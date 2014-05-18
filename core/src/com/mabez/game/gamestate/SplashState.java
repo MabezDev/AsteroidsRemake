@@ -31,6 +31,7 @@ public class SplashState extends BaseState {
         //load fonts and sounds duriong splash screen
         resManager.TTFLoader("fonts/destructobeambb_reg.ttf",20,"menu_text");
         resManager.TTFLoader("fonts/destructobeambb_reg.ttf",32,"menu_title");
+        resManager.TTFLoader("fonts/destructobeambb_reg.ttf",42,"high_scores_text");
         resManager.loadSound("sounds/bounce.ogg","bullet");
     }
 

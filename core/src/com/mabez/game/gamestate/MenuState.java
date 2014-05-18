@@ -106,6 +106,9 @@ public class MenuState extends BaseState {
         if(temp.equals("Play")){
             sm.setState(SceneManager.GAME);
         }
+        if(temp.equals("HighScores")){
+            sm.setState(SceneManager.HIGHSCORES);
+        }
         if(temp.equals("Quit")){
             System.exit(0);
         }

@@ -1,10 +1,7 @@
 package com.mabez.game.managers;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.mabez.game.gamestate.BaseState;
-import com.mabez.game.gamestate.GameState;
-import com.mabez.game.gamestate.MenuState;
-import com.mabez.game.gamestate.SplashState;
+import com.mabez.game.gamestate.*;
 
 /**
  * Created by user on 03/05/2014.
@@ -14,7 +11,8 @@ public class SceneManager {
     public static final int MENU = 0;
     public static final int GAME = 1;
     public static final int SPLASH = 3;
-    public static final int GG = 2;
+
+    public static final int HIGHSCORES = 2;
     private static BaseState currentState;
     public OrthographicCamera cam;
     public static ResourceManager resourceManager;
@@ -43,6 +41,9 @@ public class SceneManager {
         }
         if(i==GAME){
             currentState = new GameState(this);
+        }
+        if(i==HIGHSCORES){
+            currentState = new HighScoresState(this);
         }
     }
 
