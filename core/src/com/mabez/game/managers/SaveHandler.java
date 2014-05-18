@@ -30,10 +30,15 @@ public class SaveHandler {
     public static void load(){
         try{
             if(!fileExists()){
-                ObjectInputStream in = new ObjectInputStream(new FileInputStream("scores.sav"));
-                ScoreHolder = (ScoreHolder)in.readObject();
+                init();
+                return;
+
             }
+            ObjectInputStream in = new ObjectInputStream(new FileInputStream("scores.sav"));
+            ScoreHolder = (ScoreHolder)in.readObject();
+            in.close();
         }catch(Exception e){
+
             e.printStackTrace();
         }
     }

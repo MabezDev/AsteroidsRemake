@@ -3,6 +3,7 @@ package com.mabez.game.gamestate;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mabez.game.entities.ScoreHolder;
+import com.mabez.game.managers.MyKeys;
 import com.mabez.game.managers.SaveHandler;
 import com.mabez.game.managers.SceneManager;
 
@@ -26,8 +27,6 @@ public class HighScoresState extends BaseState{
 
     @Override
     public void init() {
-        s = new SaveHandler();
-        SaveHandler.init();
         SaveHandler.load();
         ScoreHolder sc = SaveHandler.getScoreHolderInstance();
         Names = sc.getNameArray();
@@ -56,7 +55,12 @@ public class HighScoresState extends BaseState{
 
     @Override
     public void HandleInput() {
-
+        if(MyKeys.isPressed(MyKeys.SPACE)){
+            sm.setState(SceneManager.MENU);
+        }
+        if(MyKeys.isPressed(MyKeys.ESCAPE)){
+            sm.setState(SceneManager.MENU);
+        }
     }
 
     @Override

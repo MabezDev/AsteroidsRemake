@@ -11,19 +11,20 @@ public class SceneManager {
     public static final int MENU = 0;
     public static final int GAME = 1;
     public static final int SPLASH = 3;
-
+    public static final int GG = 4;
     public static final int HIGHSCORES = 2;
     private static BaseState currentState;
     public OrthographicCamera cam;
     public static ResourceManager resourceManager;
+    public static SaveHandler saveHandler;
     public static String Device;
 
     public SceneManager(OrthographicCamera cam,String Device) {
         this.cam = cam;
         this.Device = Device;
         resourceManager = new ResourceManager();
+        saveHandler = new SaveHandler();
         setState(SPLASH);
-
     }
 
 

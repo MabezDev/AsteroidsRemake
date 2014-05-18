@@ -10,6 +10,7 @@ import com.mabez.game.entities.Asteroid;
 import com.mabez.game.entities.Bullet;
 import com.mabez.game.entities.Player;
 import com.mabez.game.managers.MyKeys;
+import com.mabez.game.managers.SaveHandler;
 import com.mabez.game.managers.SceneManager;
 import com.mabez.game.managers.ScoreHandler;
 
@@ -134,7 +135,11 @@ public class GameState extends BaseState {
             } else {
                 counter += dt;
                 if(counter > 2.5f) {// two seconds of delay till going back to the main menu
-                    sm.setState(sm.MENU);
+                    SaveHandler.init();
+                    SaveHandler.load();
+                    SaveHandler.getScoreHolderInstance().addNewScore(sh.getCurrentScore(),"SCO");//prob add this GG Scene; Need name input methods
+                    SaveHandler.save();
+                    sm.setState(SceneManager.MENU);
                 } else {
 
                 }

@@ -46,6 +46,7 @@ public class ScoreHolder implements Serializable {
     public String[] getNameArray(){
         return Names;
     }
+
     private boolean isNewHighScore(long score){
         return score > Scores[MAX_SCORES-1];
     }
@@ -54,7 +55,24 @@ public class ScoreHolder implements Serializable {
         if(isNewHighScore(score)){
             Scores[MAX_SCORES-1] = score;
             Names[MAX_SCORES- 1] = name;
+            sortArray();
 
+        }
+    }
+
+    private void sortArray(){
+        for(int i = 0; i < MAX_SCORES; i++) {
+            long score = Scores[i];
+            String name = Names[i];
+            int j;
+            for(j = i - 1;
+                j >= 0 && Scores[j] < score;
+                j--) {
+                Scores[j + 1] = Scores[j];
+                Names[j + 1] = Names[j];
+            }
+            Scores[j + 1] = score;
+            Names[j + 1] = name;
         }
     }
 
