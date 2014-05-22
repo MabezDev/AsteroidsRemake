@@ -135,7 +135,6 @@ public class GameState extends BaseState {
             } else {
                 counter += dt;
                 if(counter > 2.5f) {// two seconds of delay till going back to the main menu
-                    SaveHandler.init();
                     SaveHandler.load();
                     SaveHandler.getScoreHolderInstance().addNewScore(sh.getCurrentScore(),"SCO");//prob add this GG Scene; Need name input methods
                     SaveHandler.save();

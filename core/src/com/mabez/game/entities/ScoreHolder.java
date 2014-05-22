@@ -4,6 +4,7 @@ import com.mabez.game.managers.MyKeys;
 
 import javax.lang.model.element.Name;
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.HashMap;
 
 /**
@@ -32,7 +33,7 @@ public class ScoreHolder implements Serializable {
         init();
     }
 
-    private void init(){
+    public void init(){
         for(int i=0; i<MAX_SCORES;i++){
             Scores[i] = 0;
             Names[i] = "---";
@@ -74,7 +75,11 @@ public class ScoreHolder implements Serializable {
             Scores[j + 1] = score;
             Names[j + 1] = name;
         }
+        System.out.print(Arrays.toString(Scores));
     }
+
+
+
 
 
 }

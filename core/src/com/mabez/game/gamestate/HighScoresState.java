@@ -41,9 +41,9 @@ public class HighScoresState extends BaseState{
         sb.begin();
         widthOfFont=0f;
         for(int i=0; i<Scores.length;i++){
-            format = String.format("%2d.,%7s,%s",i+1,Scores[i],Names[i]);
+            format = String.format("%2d.|%8s|%s",i+1,Scores[i],Names[i]);
             widthOfFont = font.getBounds(format).width;
-            font.draw(sb,format,(sm.cam.viewportWidth- widthOfFont)/2,400 - (i+1)*30);
+            font.draw(sb,format,(sm.cam.viewportWidth- widthOfFont)/2,600 - (i+1)*40);
         }
         sb.end();
     }

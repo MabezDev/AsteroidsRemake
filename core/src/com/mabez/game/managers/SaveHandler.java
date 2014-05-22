@@ -31,6 +31,7 @@ public class SaveHandler {
         try{
             if(!fileExists()){
                 init();
+                ScoreHolder.init();
                 return;
 
             }
