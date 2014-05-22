@@ -29,16 +29,18 @@ public class Main extends ApplicationAdapter {
 
     @Override
     public void create () {
+
         cam = new OrthographicCamera(Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
+        sm = new SceneManager(cam,Device);
         if(Device.equals("_desktop")){
             System.out.println("Gathering Input From: DESKTOP");
             Gdx.input.setInputProcessor(new MyInputProccesor());
         } else if(Device.equals("_android")){
             Gdx.input.setCatchBackKey(true);
             System.out.println("Gathering Input From: ANDROID");
-            Gdx.input.setInputProcessor(new AndroidInputProcessor());
+            Gdx.input.setInputProcessor(new AndroidInputProcessor(sm));
         }
-        sm = new SceneManager(cam,Device);
+
 
 
     }

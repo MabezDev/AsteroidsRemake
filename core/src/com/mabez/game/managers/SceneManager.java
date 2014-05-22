@@ -18,6 +18,7 @@ public class SceneManager {
     public static ResourceManager resourceManager;
     public static SaveHandler saveHandler;
     public static String Device;
+    private String StringState;
 
     public SceneManager(OrthographicCamera cam,String Device) {
         this.cam = cam;
@@ -27,7 +28,9 @@ public class SceneManager {
         setState(SPLASH);
     }
 
-
+    public String getCurrentState(){
+        return StringState;
+    }
 
 
     public void setState(int i){
@@ -35,15 +38,19 @@ public class SceneManager {
             currentState.dispose();
         }
         if(i==SPLASH){
+            StringState = "SPLASH";
             currentState = new SplashState(this);
         }
         if(i==MENU){
+            StringState = "MENU";
             currentState = new MenuState(this);
         }
         if(i==GAME){
+            StringState = "GAME";
             currentState = new GameState(this);
         }
         if(i==HIGHSCORES){
+            StringState = "HIGHSCORES";
             currentState = new HighScoresState(this);
         }
     }

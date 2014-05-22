@@ -4,9 +4,6 @@ import com.mabez.game.entities.ScoreHolder;
 
 import java.io.*;
 
-/**
- * Created by user on 18/05/2014.
- */
 public class SaveHandler {
 
     public static ScoreHolder ScoreHolder;

@@ -10,8 +10,8 @@ import com.mabez.game.managers.SceneManager;
 public abstract class BaseState {
     protected SceneManager sm;
     protected ResourceManager resManager;
-    public BaseState(SceneManager sm){
-        this.sm=sm;
+    public BaseState(SceneManager sm) {
+        this.sm = sm;
         this.resManager = ResourceManager.getInstance();
         init();
     }
