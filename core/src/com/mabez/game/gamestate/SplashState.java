@@ -25,13 +25,13 @@ public class SplashState extends BaseState {
     @Override
     public void init() {
         font1 = new BitmapFont();
-        font1.setColor(Color.WHITE);
+        font1.setColor(Color.RED);
         sb = new SpriteBatch();
 
         //load fonts and sounds duriong splash screen
-        resManager.TTFLoader("fonts/destructobeambb_reg.ttf",20,"menu_text");
-        resManager.TTFLoader("fonts/destructobeambb_reg.ttf",32,"menu_title");
-        resManager.TTFLoader("fonts/destructobeambb_reg.ttf",42,"high_scores_text");
+        resManager.TTFLoader("fonts/Hyperspace Bold.ttf",20,"menu_text");
+        resManager.TTFLoader("fonts/Hyperspace Bold.ttf",32,"menu_title");
+        resManager.TTFLoader("fonts/Hyperspace Bold.ttf",42,"high_scores_text");
         resManager.loadSound("sounds/bounce.ogg","bullet");
     }
 

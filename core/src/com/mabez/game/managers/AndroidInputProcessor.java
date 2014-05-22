@@ -42,10 +42,10 @@ public class AndroidInputProcessor implements InputProcessor{
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-
         if(sm.getCurrentState().equals("MENU")){
             MyKeys.setKeyState(MyKeys.W,false);
             MyKeys.setKeyState(MyKeys.S,false);
+            MyKeys.setKeyState(MyKeys.SPACE, false);
             xdrag = screenX;
             ydrag = screenY;
 
@@ -61,13 +61,10 @@ public class AndroidInputProcessor implements InputProcessor{
             afterx = screenX;
             aftery = screenY;
             int distance = aftery - ydrag;
-            System.out.println(distance);
             if(distance>10){
                 MyKeys.setKeyState(MyKeys.W,true);
-                System.out.println("UP");
             }else if(distance<-10){
                 MyKeys.setKeyState(MyKeys.S,true);
-                System.out.println("DOWN");
             } else if(distance>-10 && distance<10){
                 MyKeys.setKeyState(MyKeys.SPACE, true);
             }

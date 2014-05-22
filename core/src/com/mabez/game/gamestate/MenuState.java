@@ -18,7 +18,7 @@ public class MenuState extends BaseState {
     private BitmapFont titleFont;
 
     private SpriteBatch sb;
-    private HashMap<Integer,String> options;
+    private String[] options;
     private String currentOption;
     private int index;
 
@@ -34,11 +34,7 @@ public class MenuState extends BaseState {
         sb = new SpriteBatch();
         font.setColor(1,1,1,1);
         titleFont.setColor(1, 1, 1, 1);
-        options = new HashMap<Integer, String>();
-        options.put(0,"Play");
-        options.put(1,"HighScores");
-        options.put(2,"Quit");
-        currentOption = "Play";
+        options =  new String[]{"Play","HighScores","Quit"};
         index = 0;
 
 
@@ -54,14 +50,21 @@ public class MenuState extends BaseState {
     public void draw() {
         sb.begin();
         drawFont(titleFont,150,"ASTEROIDS",Color.WHITE);
-        for(int i =0;i<options.size();i++){
-            String temp = (String) options.get(i);
 
-            if(temp.equals(currentOption)){
-                drawFont(font,125+((i + 1)*-65),temp,Color.RED);
-            }
-            drawFont(font,125 + ((i + 1) * -65), temp, Color.WHITE);
+        for(int i = 0; i < options.length; i++) {
+            int width = (int)font.getBounds(options[i]).width;
+            if(index == i) font.setColor(Color.RED);
+            else font.setColor(Color.WHITE);
+            font.draw(
+                    sb,
+                    options[i],
+                    (sm.cam.viewportWidth- width) / 2,
+                    325 - 35 * i
+            );
         }
+
+
+
         sb.end();
     }
 
@@ -80,20 +83,16 @@ public class MenuState extends BaseState {
     @Override
     public void HandleInput() {
         if(MyKeys.isPressed(MyKeys.W)){
-            if(index<=0){
-                index= options.size()-1;
-            }else{
-                index--;
+            if(index > 0) {
+               index--;
             }
         }
         if(MyKeys.isPressed(MyKeys.S)){
-            if(index>=options.size()-1){
-                index=0;
-            }else {
+            if(index < options.length - 1) {
                 index++;
             }
         }
-        currentOption = options.get(index);
+        currentOption = options[index];
         if(MyKeys.isPressed(MyKeys.SPACE)) {
             doChoice(index);
         }
@@ -102,7 +101,7 @@ public class MenuState extends BaseState {
     }
 
     private void doChoice(int choice){
-        String temp = options.get(choice);
+        String temp = options[choice];
         if(temp.equals("Play")){
             sm.setState(SceneManager.GAME);
         }

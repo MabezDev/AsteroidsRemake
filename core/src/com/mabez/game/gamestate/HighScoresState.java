@@ -27,7 +27,12 @@ public class HighScoresState extends BaseState{
 
     @Override
     public void init() {
-        SaveHandler.load();
+        if(sm.Device.equals("_desktop")){
+            SaveHandler.load();
+        } else if(sm.Device.equals("_android")){
+            SaveHandler.AndroidLoad();
+        }
+
         ScoreHolder sc = SaveHandler.getScoreHolderInstance();
         Names = sc.getNameArray();
         Scores = sc.getScoreArray();
