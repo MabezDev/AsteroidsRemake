@@ -42,14 +42,24 @@ public class AndroidInputProcessor implements InputProcessor{
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        xdrag = screenX;
+        ydrag = screenY;
         if(sm.getCurrentState().equals("MENU")){
             MyKeys.setKeyState(MyKeys.W,false);
             MyKeys.setKeyState(MyKeys.S,false);
+            MyKeys.setKeyState(MyKeys.A,false);
+            MyKeys.setKeyState(MyKeys.D,false);
             MyKeys.setKeyState(MyKeys.SPACE, false);
-            xdrag = screenX;
-            ydrag = screenY;
 
-        } else if(sm.getCurrentState().equals("GAME")) {
+
+        }else if(sm.getCurrentState().equals("GG")){
+            MyKeys.setKeyState(MyKeys.W,false);
+            MyKeys.setKeyState(MyKeys.S,false);
+            MyKeys.setKeyState(MyKeys.A,false);
+            MyKeys.setKeyState(MyKeys.D,false);
+            MyKeys.setKeyState(MyKeys.SPACE, false);
+
+        }else if(sm.getCurrentState().equals("GAME")) {
             MyKeys.setKeyState(MyKeys.SPACE, true);
         }
             return false;
@@ -57,21 +67,44 @@ public class AndroidInputProcessor implements InputProcessor{
 
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+        afterx = screenX;
+        aftery = screenY;
+        int distancey = aftery - ydrag;
+        int distancex = afterx - xdrag;
+
+        System.out.println(distancex);
+        //System.out.println(distancey);
+
         if(sm.getCurrentState().equals("MENU")){
-            afterx = screenX;
-            aftery = screenY;
-            int distance = aftery - ydrag;
-            if(distance>10){
+            if(distancey>100){
                 MyKeys.setKeyState(MyKeys.W,true);
-            }else if(distance<-10){
+            }else if(distancey<-100){
                 MyKeys.setKeyState(MyKeys.S,true);
-            } else if(distance>-10 && distance<10){
+            } else if(distancey>-20 && distancey<20){
                 MyKeys.setKeyState(MyKeys.SPACE, true);
             }
 
 
         } else if(sm.getCurrentState().equals("GAME")) {
             MyKeys.setKeyState(MyKeys.SPACE, false);
+
+        } else if(sm.getCurrentState().equals("GG")){
+            if(distancex<-100){
+                MyKeys.setKeyState(MyKeys.A,true);
+            } else if(distancex>100){
+                MyKeys.setKeyState(MyKeys.D,true);
+            }
+
+            if(distancey>100){
+                MyKeys.setKeyState(MyKeys.W,true);
+            }else if(distancey<-100){
+                MyKeys.setKeyState(MyKeys.S,true);
+            }
+
+            if(distancey>-20 && distancey<20){
+                MyKeys.setKeyState(MyKeys.SPACE, true);
+            }
+
         }
 
         return false;

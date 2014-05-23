@@ -23,7 +23,7 @@ public class ResourceManager {
     public ResourceManager(){
         sounds = new HashMap<String, Sound>();
         fonts = new HashMap<String, BitmapFont>();
-    }//HaspMap of Sounds
+    }//HaspMap of dataTypes
 
     public void loadSound(String path,String Key){//loads the sound into memory
         Sound s = Gdx.audio.newSound(Gdx.files.internal(path));
@@ -43,7 +43,7 @@ public class ResourceManager {
         return s;
     }
 
-    public void TTFLoader(String TTFPATH,int size,String key){
+    public void TTFLoader(String TTFPATH,int size,String key){//gens ttf font
         FreeTypeFontGenerator gen = new FreeTypeFontGenerator(Gdx.files.internal(TTFPATH));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
         parameter.size = size;
@@ -67,6 +67,8 @@ public class ResourceManager {
     {
         return INSTANCE;
     }
+
+
 
 
 

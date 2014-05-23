@@ -5,6 +5,7 @@ public class ScoreHandler {
 
     private int currentScore;
     private static final int sigFigScore = 8;
+    private static long tempScore =0;
 
     public ScoreHandler(){
         this.currentScore = 0;
@@ -28,6 +29,14 @@ public class ScoreHandler {
             tempString = Integer.toString(currentScore);
         }
         return tempString;
+    }
+
+    public static void setTempScore(long i){
+        tempScore = i;
+    }
+
+    public static long getTempScore(){
+        return tempScore;
     }
 
     public void incrementScore(int i){

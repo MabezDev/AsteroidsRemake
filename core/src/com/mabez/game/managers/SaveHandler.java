@@ -8,7 +8,6 @@ import java.io.*;
 public class SaveHandler {
 
     public static ScoreHolder ScoreHolder;
-    public static String locRoot;
 
     public static void save(){
         try{

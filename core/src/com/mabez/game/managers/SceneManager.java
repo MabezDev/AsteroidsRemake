@@ -53,6 +53,10 @@ public class SceneManager {
             StringState = "HIGHSCORES";
             currentState = new HighScoresState(this);
         }
+        if(i==GG){
+            StringState="GG";
+            currentState = new GGState(this);
+        }
     }
 
     public void update(float dt){

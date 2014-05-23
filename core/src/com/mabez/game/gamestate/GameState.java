@@ -135,7 +135,7 @@ public class GameState extends BaseState {
             } else {
                 counter += dt;
                 if(counter > 2.5f) {// two seconds of delay till going back to the main menu
-                    if(sm.Device.equals("_desktop")){
+                    /*if(sm.Device.equals("_desktop")){//add this to GGSCene
                         SaveHandler.load();
                         SaveHandler.getScoreHolderInstance().addNewScore(sh.getCurrentScore(),"SCO");//prob add this GG Scene; Need name input methods
                         SaveHandler.save();
@@ -143,9 +143,9 @@ public class GameState extends BaseState {
                         SaveHandler.AndroidLoad();
                         SaveHandler.getScoreHolderInstance().addNewScore(sh.getCurrentScore(),"SCO");//prob add this GG Scene; Need name input methods
                         SaveHandler.AndroidSave();
-                    }
-
-                    sm.setState(SceneManager.MENU);
+                    }*/
+                    sh.setTempScore(sh.getCurrentScore());
+                    sm.setState(SceneManager.GG);
                 } else {
 
                 }

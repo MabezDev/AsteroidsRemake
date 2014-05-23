@@ -27,6 +27,7 @@ public class ScoreHolder implements Serializable {
 
     private String[] Names;
     private long[] Scores;
+
     public ScoreHolder() {
         Scores = new long[MAX_SCORES];
         Names = new String[MAX_SCORES];
@@ -60,6 +61,8 @@ public class ScoreHolder implements Serializable {
 
         }
     }
+
+
 
     private void sortArray(){
         for(int i = 0; i < MAX_SCORES; i++) {
