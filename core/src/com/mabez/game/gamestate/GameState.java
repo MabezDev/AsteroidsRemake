@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.mabez.game.entities.Asteroid;
 import com.mabez.game.entities.Bullet;
 import com.mabez.game.entities.Player;
+import com.mabez.game.entities.ScoreHolder;
 import com.mabez.game.managers.MyKeys;
 import com.mabez.game.managers.SaveHandler;
 import com.mabez.game.managers.SceneManager;

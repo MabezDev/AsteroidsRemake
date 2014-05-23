@@ -22,6 +22,7 @@ public class GGState extends BaseState {
     private SpriteBatch sb;
     private char[] name;
     private int index = 0;
+    private boolean isHighScore ;
 
     public GGState(SceneManager sm) {
         super(sm);
@@ -36,23 +37,37 @@ public class GGState extends BaseState {
         for(int i =0; i<3;i++){
             name[i] = 'A';
         }
+        if(sm.Device.equals("_desktop")){
+            SaveHandler.load();
+            if(SaveHandler.getScoreHolderInstance().isNewHighScore(ScoreHandler.getTempScore())){
+                isHighScore =true;
+            }
+        } else if(sm.Device.equals("_android")){
+            SaveHandler.AndroidLoad();
+            if(SaveHandler.getScoreHolderInstance().isNewHighScore(ScoreHandler.getTempScore())){
+                isHighScore =true;
+            }
+        }
     }
 
     @Override
     public void draw() {
         sb.begin();
-        GAMEOVER_FONT.draw(sb,"GAMEOVER",sm.cam.viewportWidth/2-GAMEOVER_FONT.getBounds("GAMEOVER").width/2,500);
+        if(isHighScore) {
+            GAMEOVER_FONT.draw(sb, "NEW HIGHSCORE!", sm.cam.viewportWidth / 2 - GAMEOVER_FONT.getBounds("NEW  HIGHSCORE").width / 2, 500);
 
-        for(int i = 0;i<3;i++){
+            for (int i = 0; i < 3; i++) {
 
-            if(i==index){
-                NORMAL_FONT.setColor(Color.RED);
-            } else{
-                NORMAL_FONT.setColor(Color.WHITE);
+                if (i == index) {
+                    NORMAL_FONT.setColor(Color.RED);
+                } else {
+                    NORMAL_FONT.setColor(Color.WHITE);
+                }
+                NORMAL_FONT.draw(sb, Character.toString(name[i]), sm.cam.viewportWidth / 2 - (NORMAL_FONT.getBounds(Character.toString(name[i])).width + 35) + i * 35, 350);//-NORMAL_FONT.getBounds(Character.toString(name[i])).width/2
             }
-            NORMAL_FONT.draw(sb,Character.toString(name[i]),sm.cam.viewportWidth/2 - (NORMAL_FONT.getBounds(Character.toString(name[i])).width+35) +i*35,350);//-NORMAL_FONT.getBounds(Character.toString(name[i])).width/2
+        } else{
+            sm.setState(SceneManager.MENU);
         }
-
         sb.end();
     }
 
@@ -103,10 +118,12 @@ public class GGState extends BaseState {
             name[index] = fin;
         }
         if(MyKeys.isPressed(MyKeys.SPACE)){
+            System.out.println(ScoreHandler.getTempScore());
+            SaveHandler.getScoreHolderInstance().addNewScore(ScoreHandler.getTempScore(),buildNameString());
             if(sm.Device.equals("_desktop")){
-                saveHighScore();
+                SaveHandler.save();
             } else if(sm.Device.equals("_android")){
-                androidSaveHighScore();
+                SaveHandler.AndroidSave();
             }
             sm.setState(SceneManager.MENU);
         }

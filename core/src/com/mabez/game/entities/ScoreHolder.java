@@ -25,8 +25,8 @@ public class ScoreHolder implements Serializable {
     protected static final int PLAYER_NAME_SIZE = 3;
 
 
-    private String[] Names;
-    private long[] Scores;
+    private  String[] Names;
+    private  long[] Scores;
 
     public ScoreHolder() {
         Scores = new long[MAX_SCORES];
@@ -49,7 +49,7 @@ public class ScoreHolder implements Serializable {
         return Names;
     }
 
-    private boolean isNewHighScore(long score){
+    public boolean isNewHighScore(long score){
         return score > Scores[MAX_SCORES-1];
     }
 
