@@ -62,7 +62,7 @@ public class Asteroid extends SpaceObject {
     public void update(float dt){
         directionRad += rotationSpeed*dt;
         dx = MathUtils.cos(directionRad)*100;
-        dx = MathUtils.sin(directionRad)*100;
+        dy = MathUtils.sin(directionRad)*100;
 
         float vec = (float) Math.sqrt(dx * dx + dy * dy);
         if(vec > 0) {

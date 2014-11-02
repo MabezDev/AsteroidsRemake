@@ -16,7 +16,7 @@ import java.util.HashMap;
 public class ResourceManager {
 
     private HashMap<String,Sound> sounds;
-    private HashMap<String, BitmapFont> fonts;
+    private HashMap<String,BitmapFont> fonts;
 
     private static final ResourceManager INSTANCE = new ResourceManager();
 
