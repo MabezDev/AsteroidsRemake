@@ -34,7 +34,7 @@ public class MenuState extends BaseState {
         sb = new SpriteBatch();
         font.setColor(1,1,1,1);
         titleFont.setColor(1, 1, 1, 1);
-        options =  new String[]{"Play","HighScores","Quit"};
+        options =  new String[]{"Play","HighScores","Options","Quit"};
         index = 0;
 
 
@@ -110,6 +110,9 @@ public class MenuState extends BaseState {
         }
         if(temp.equals("Quit")){
             System.exit(0);
+        }
+        if(temp.equals("Options")){
+            sm.setState(SceneManager.OPTIONS);
         }
     }
 

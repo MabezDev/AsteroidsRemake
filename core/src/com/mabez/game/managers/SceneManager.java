@@ -13,6 +13,7 @@ public class SceneManager {
     public static final int SPLASH = 3;
     public static final int GG = 4;
     public static final int HIGHSCORES = 2;
+    public static final int OPTIONS = 5;
     private static BaseState currentState;
     public OrthographicCamera cam;
     public static ResourceManager resourceManager;
@@ -56,6 +57,11 @@ public class SceneManager {
         if(i==GG){
             StringState="GG";
             currentState = new GGState(this);
+        }
+        if(i==OPTIONS){
+            StringState="OPTIONS";
+            currentState= new OptionsState(this);
+
         }
     }
 
