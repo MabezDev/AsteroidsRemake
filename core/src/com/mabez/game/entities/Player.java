@@ -76,7 +76,7 @@ public class Player extends SpaceObject {
 
         //vertices of polygon
         shapex[0] = x + MathUtils.cos(directionRad)*8;
-        shapey[0] = y +MathUtils.sin(directionRad)*8;
+        shapey[0] = y + MathUtils.sin(directionRad)*8;
 
         shapex[1] = x + MathUtils.cos(directionRad - 4*Pi/5) *8;
         shapey[1] = y + MathUtils.sin(directionRad - 4*Pi/5)*8;
@@ -176,10 +176,9 @@ public class Player extends SpaceObject {
         }
 
         sr.end();
-
-
-
     }
+
+
 
 
 

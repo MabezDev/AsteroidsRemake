@@ -6,10 +6,8 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.mabez.game.entities.Asteroid;
-import com.mabez.game.entities.Bullet;
-import com.mabez.game.entities.Player;
-import com.mabez.game.entities.ScoreHolder;
+import com.badlogic.gdx.math.MathUtils;
+import com.mabez.game.entities.*;
 import com.mabez.game.managers.MyKeys;
 import com.mabez.game.managers.SaveHandler;
 import com.mabez.game.managers.SceneManager;
@@ -30,6 +28,7 @@ public class GameState extends BaseState {
     private boolean isPaused;
 
     private Player player;
+    private Alien alien;
     private ArrayList<Asteroid> asteroids;
     public ArrayList<Bullet> bullets;
     private static int  NUM_ASTEROIDS = 4;
@@ -63,6 +62,7 @@ public class GameState extends BaseState {
 
 
         player = new Player(sm.cam,sm);//create instance of the player
+        alien = new Alien(player.getX() - MathUtils.random(0f,20f),player.getY() - MathUtils.random(0f,20f));
         asteroids = new ArrayList<Asteroid>();//instantiate array of asteroids
         bullets = new ArrayList<Bullet>();//instantiate array of bullets
 
@@ -70,6 +70,7 @@ public class GameState extends BaseState {
         sr = new ShapeRenderer();//for rendering the player
 
         player.setShape();// initialize player shape
+        alien.setShape();
     }
 
     public void Pause(){ isPaused = true; } //setter for pausing the game
@@ -78,9 +79,31 @@ public class GameState extends BaseState {
         isPaused = false;
     } // setter for resuming the game
 
+    public Node[] GetNodes(){
+        Node[] temp = new Node[asteroids.size()+2];// +2 for player and alien
+
+        for(int i = 0; i< asteroids.size();i++){
+            temp[i].x = asteroids.get(i).getX();
+            temp[i].y = asteroids.get(i).getY();
+        }
+
+        temp[asteroids.size()+1].x = alien.getX();
+        temp[asteroids.size()+1].y = alien.getY();
+
+        temp[asteroids.size()+2].x = player.getX();
+        temp[asteroids.size()+2].y = player.getY();
+
+
+
+
+        return temp;
+    }
+
 
     @Override
     public void draw() {
+
+        alien.draw(sr);
 
         //if the player is alive draw the ship and bullets
         if(player.isAlive()) {
